@@ -2,6 +2,11 @@
 
 ## Quick Start
 
+### create project
+
+``` bash
+$ mkdir -p $GOPATH/src/github/{your username}/{project name}
+```
 ### Write main.go
 ``` bash
 # simply run

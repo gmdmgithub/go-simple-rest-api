@@ -162,6 +162,14 @@ func sayHello(w http.ResponseWriter, r *http.Request) {
 		- /goapi/book/id - delete the book`)
 }
 
+func forTesting(test, test2 string) string {
+	res := test
+	if len(test2) > 0 { //improvement after test scenario
+		res += " " + test2
+	}
+	return res
+}
+
 func main() {
 	//router initialization
 	router := mux.NewRouter()
