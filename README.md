@@ -11,7 +11,7 @@ $ mkdir -p $GOPATH/src/github/{your username}/{project name}
 ``` bash
 # simply run
 $go run ./main.go
-# simplify run - the project: 
+# sor build then run ... 
 $go build
 # run the execution file
 $./project_name

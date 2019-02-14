@@ -46,7 +46,7 @@ func initBooks() {
  * @param {w} http respose writer
  * @param {r} pointer to http request
  */
-func getBooks(resw http.ResponseWriter, reqr *http.Request) {
+func getBooks(resw http.ResponseWriter, req *http.Request) {
 	//fmt.Fprintf(w, "List of book will be serve soon ...")
 	resw.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(resw).Encode(books)
@@ -178,7 +178,7 @@ func main() {
 
 	//Route handlers/endpots
 	router.HandleFunc("/goapi/books", getBooks).Methods("GET")
-	router.HandleFunc("/goapi/book/{id}", getBook).Methods("GET")
+	router.HandleFunc("/goapi/books/{id}", getBook).Methods("GET")
 	router.HandleFunc("/goapi/books", createBook).Methods("POST")
 	router.HandleFunc("/goapi/books/{id}", updateBook).Methods("PUT")
 	router.HandleFunc("/goapi/books/{id}", deleteBook).Methods("DELETE")
