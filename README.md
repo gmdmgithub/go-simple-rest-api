@@ -10,11 +10,11 @@ $ mkdir -p $GOPATH/src/github/{your username}/{project name}
 ### Write main.go
 ``` bash
 # simply run
-$go run ./main.go
-# sor build then run ... 
-$go build
+$ go run ./main.go
+# or build then run ... 
+$ go build
 # run the execution file
-$./project_name
+$ ./project_name
 ```
 ### Install mux router
 ``` bash
@@ -26,7 +26,6 @@ go get -u github.com/gorilla/mux
 ```go
 books = append(books[:index], books[index+1:]...)
 ```
-
 ## Version
 
 1.0.0
