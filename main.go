@@ -156,7 +156,7 @@ func deleteBook(w http.ResponseWriter, r *http.Request) {
 func sayHello(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, `Hi there! Use:
 		- /goapi/books - list of books
-		- /goapi/book/id - get the book
+		- /goapi/books/id - get the book
 		- /goapi/books - post a book
 		- /goapi/book/id - put(update) the book
 		- /goapi/book/id - delete the book`)
