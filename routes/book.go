@@ -47,7 +47,7 @@ func InitBooks() {
  * @param {r} pointer to http request
  */
 func GetBooks(resw http.ResponseWriter, req *http.Request) {
-	log.Print("Get books")
+	log.Printf("Get books URI: %s", req.RequestURI)
 	//fmt.Fprintf(w, "List of book will be serve soon ...")
 	resw.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(resw).Encode(books)
