@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/gmdmgithub/go_rest_api/models"
 	"github.com/gmdmgithub/go_rest_api/routes"
 	"github.com/gorilla/mux"
 )
@@ -44,6 +45,7 @@ func main() {
 	router.HandleFunc("/", sayHello).Methods("GET")
 
 	routes.SayHi()
+	models.RoleModel()
 
 	port := 8001
 	// Listen to port (8081) and handle requests - response is nil (null)
