@@ -4,10 +4,10 @@ import (
 	"fmt"
 )
 
-//Roles is popula bakery
+//Role is popula bakery
 type Role struct {
 	ID          int    `json:"id"`
-	ImageUrl    string `json:"url"`
+	ImageURL    string `json:"url"`
 	Name        string `json:"name"`
 	Ingredients string `json:"ingredients"`
 }
@@ -15,8 +15,10 @@ type Role struct {
 //initiate roles
 var roles []Role
 
+// RoleModel - gets the role model
 func RoleModel() {
-	roles = append(roles, Role{ID: 1, ImageUrl: "https://google.com", Name: "John Doe", Ingredients: "Water, eggs, kefir"})
-	fmt.Printf("Hi there! % \n", roles)
+	roles = append(roles, Role{ID: 1, ImageURL: "https://google.com", Name: "John Doe", Ingredients: "Water, eggs, kefir"})
+	roles = append(roles, Role{ID: 2, ImageURL: "https://google.com/name", Name: "Jon Blame", Ingredients: "Coffee, eggs, kefir"})
+	fmt.Printf("Hi there! %v \n", roles)
 
 }
