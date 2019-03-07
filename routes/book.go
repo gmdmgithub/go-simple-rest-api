@@ -11,7 +11,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-//model for book - Struct
+//Book - model for book - Struct
 type Book struct {
 	ID     int     `json:"id"`
 	Isbn   string  `json:"isbn"`
@@ -28,7 +28,8 @@ type Author struct {
 
 var books []Book
 
-func InitBooks() {
+// InitBooks init a book rout
+func InitBooks(router *mux.Router) {
 
 	auth1 := Author{ID: "1", Firstname: "John", Lastname: "Doe"}
 	auth2 := Author{ID: "1", Firstname: "Marin", Lastname: "Smith"}
@@ -39,6 +40,12 @@ func InitBooks() {
 	books = append(books, Book{ID: 4, Isbn: "667788", Title: "Nice title 4", Author: &auth2})
 	books = append(books, Book{ID: 5, Isbn: "778899", Title: "Nice title 5",
 		Author: &Author{ID: "3", Firstname: "Adam", Lastname: "Frodo"}})
+
+	router.HandleFunc("/goapi/books", getBooks).Methods("GET")
+	router.HandleFunc("/goapi/books/{id}", getBook).Methods("GET")
+	router.HandleFunc("/goapi/books", createBook).Methods("POST")
+	router.HandleFunc("/goapi/books/{id}", updateBook).Methods("PUT")
+	router.HandleFunc("/goapi/books/{id}", deleteBook).Methods("DELETE")
 }
 
 /**
@@ -46,7 +53,7 @@ func InitBooks() {
  * @param {w} http respose writer
  * @param {r} pointer to http request
  */
-func GetBooks(resw http.ResponseWriter, req *http.Request) {
+func getBooks(resw http.ResponseWriter, req *http.Request) {
 	log.Printf("Get books URI: %s", req.RequestURI)
 	//fmt.Fprintf(w, "List of book will be serve soon ...")
 	resw.Header().Set("Content-Type", "application/json")
@@ -58,11 +65,12 @@ func GetBooks(resw http.ResponseWriter, req *http.Request) {
  * @param {w} http respose writer
  * @param {r} pointer to http request
  */
-func GetBook(w http.ResponseWriter, r *http.Request) {
+func getBook(w http.ResponseWriter, r *http.Request) {
 	log.Print("Get book")
 	w.Header().Set("Content-Type", "application/json")
+
 	params := mux.Vars(r)
-	log.Println(params)
+	log.Printf("Paramters in %v", params)
 
 	for _, item := range books {
 		id, err := strconv.Atoi(params["id"])
@@ -84,8 +92,8 @@ func GetBook(w http.ResponseWriter, r *http.Request) {
  * @param {w} http respose writer
  * @param {r} pointer to http request
  */
-func CreateBook(w http.ResponseWriter, r *http.Request) {
-	log.Print("CreateBook")
+func createBook(w http.ResponseWriter, r *http.Request) {
+	log.Print("createBook")
 	//fmt.Fprintf(w, "createBook ....")
 
 	var book Book
@@ -103,7 +111,7 @@ func CreateBook(w http.ResponseWriter, r *http.Request) {
  * @param {w} http respose writer
  * @param {r} pointer to http request
  */
-func UpdateBook(w http.ResponseWriter, r *http.Request) {
+func updateBook(w http.ResponseWriter, r *http.Request) {
 	//fmt.Fprintf(w, "updateBook ....")
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
@@ -132,7 +140,7 @@ func UpdateBook(w http.ResponseWriter, r *http.Request) {
  * @param {w} http respose writer
  * @param {r} pointer to http request
  */
-func DeleteBook(w http.ResponseWriter, r *http.Request) {
+func deleteBook(w http.ResponseWriter, r *http.Request) {
 	//fmt.Fprintf(w, "deleteBook ....")
 
 	w.Header().Set("Content-Type", "application/json")

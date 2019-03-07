@@ -16,9 +16,13 @@ type Role struct {
 var roles []Role
 
 // RoleModel - gets the role model
-func RoleModel() {
+func ReadRoles() []Role {
 	roles = append(roles, Role{ID: 1, ImageURL: "https://google.com", Name: "John Doe", Ingredients: "Water, eggs, kefir"})
 	roles = append(roles, Role{ID: 2, ImageURL: "https://google.com/name", Name: "Jon Blame", Ingredients: "Coffee, eggs, kefir"})
 	fmt.Printf("Hi there! %v \n", roles)
+	return roles
+}
 
+func SayModelRole() {
+	fmt.Println("Hi there!")
 }
