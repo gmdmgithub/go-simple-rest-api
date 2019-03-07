@@ -58,7 +58,8 @@ func forTesting(test, test2 string) string {
 }
 
 func loadEnvData() {
-	myEnv, err := godotenv.Read()
+	var err error
+	myEnv, err = godotenv.Read()
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
