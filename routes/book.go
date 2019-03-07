@@ -42,10 +42,10 @@ func InitBooks(router *mux.Router) {
 		Author: &Author{ID: "3", Firstname: "Adam", Lastname: "Frodo"}})
 
 	router.HandleFunc("/goapi/books", getBooks).Methods("GET")
-	router.HandleFunc("/goapi/books/{id}", getBook).Methods("GET")
+	router.HandleFunc("/goapi/books/{id:[0-9]+}", getBook).Methods("GET")
 	router.HandleFunc("/goapi/books", createBook).Methods("POST")
-	router.HandleFunc("/goapi/books/{id}", updateBook).Methods("PUT")
-	router.HandleFunc("/goapi/books/{id}", deleteBook).Methods("DELETE")
+	router.HandleFunc("/goapi/books/{id:[0-9]+}", updateBook).Methods("PUT")
+	router.HandleFunc("/goapi/books/{id:[0-9]+}", deleteBook).Methods("DELETE")
 }
 
 /**

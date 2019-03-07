@@ -16,6 +16,12 @@ import (
 
 var myEnv map[string]string
 
+// type server struct {
+// 	db     *someDatabase
+// 	router *someRouter
+// 	email  EmailSender
+// }
+
 func sayHello(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, `
 	Hi there, nice to see U! 
@@ -32,6 +38,15 @@ func sayHello(w http.ResponseWriter, r *http.Request) {
 		- /goapi/role/id - put(update) the role
 		- /goapi/role/id - delete the role
 		`)
+}
+
+func loggingMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Do stuff here
+		log.Printf("Logger url: %s query map is: %s ", r.RequestURI, r.URL.Query())
+		// Call the next handler, which can be another middleware in the chain, or the final handler.
+		next.ServeHTTP(w, r)
+	})
 }
 
 func forTesting(test, test2 string) string {
@@ -60,6 +75,8 @@ func main() {
 	routes.InitRoles(router)
 
 	router.HandleFunc("/", sayHello).Methods("GET")
+	//use logging middleware to log on all requests
+	router.Use(loggingMiddleware)
 
 	routes.SayHiRole()
 	routes.SayHi()

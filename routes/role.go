@@ -21,10 +21,10 @@ func InitRoles(router *mux.Router) {
 
 	//init route
 	router.HandleFunc("/goapi/roles", getRoles).Methods("GET")
-	router.HandleFunc("/goapi/roles/{id}", getRole).Methods("GET")
+	router.HandleFunc("/goapi/roles/{id:[0-9]+}", getRole).Methods("GET")
 	router.HandleFunc("/goapi/roles", createRole).Methods("POST")
-	router.HandleFunc("/goapi/roles/{id}", updateRole).Methods("PUT")
-	router.HandleFunc("/goapi/roles/{id}", deleteRole).Methods("DELETE")
+	router.HandleFunc("/goapi/roles/{id:[0-9]+}", updateRole).Methods("PUT")
+	router.HandleFunc("/goapi/roles/{id:[0-9]+}", deleteRole).Methods("DELETE")
 }
 
 /**

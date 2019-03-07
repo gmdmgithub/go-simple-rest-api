@@ -25,10 +25,14 @@ go build
 go get -u github.com/gorilla/mux
 ```
 
-### Install dotenv
+### Install dotenv and put it to the map
 
 ``` bash
 go get github.com/joho/godotenv
+```
+
+```go
+myEnv, err := godotenv.Read()
 ```
 
 ### interesting delete item from array
